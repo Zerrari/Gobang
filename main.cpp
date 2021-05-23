@@ -12,6 +12,46 @@ int check_rows(int (*)[9]);
 int check_columns(int (*)[9]);
 int check_diags(int (*)[9]);
 int check(int (*)[9]);
+int check_exist(int,int);
+int quitgame();
+
+int quitgame()
+{
+	std::cout << "Do you want to quit the game?(y/n)" << std::endl;
+	char ch;
+	std::cin >> ch;
+	int val = 0;
+	while (!val)
+	{
+	switch (ch){
+	case 'y':
+		return 1;
+	case 'n':
+		return 0;
+	default:
+		break;
+	    }
+	}
+	return 0;
+}
+
+int check_exist(int xpos,int ypos)
+{
+	for (int i = 0;i < 9;i++)
+	{
+		for (int j = 0;j < 9;j++)
+		{
+			if (xpos == i && ypos == j)
+			{
+				if (xy_pos[i][j] != 0)
+					return 0;
+				else
+					return 1;
+			}
+		}
+	}
+	return 1;
+}
 
 int check_rows(int (*xy_pos)[9])
 {
@@ -207,7 +247,6 @@ void cursor_movement(int i,int j)
 	while (res == 0)
 	{
 		command = getch();
-		std::cout << "*\n";
 		switch (command){
 		case 'w' :
 			i--;
@@ -253,9 +292,18 @@ void cursor_movement(int i,int j)
 			}
 			generate(i,j);
 			break;
+		case 'q':
+			if (quitgame())
+			{
+				return;
+			}
+			break;
 		case '\n':
-				set_position(i,j,flag);
-				flag = -flag;
+				if (check_exist(i,j))
+				{
+					set_position(i,j,flag);
+					flag = -flag;
+				}
 				break;
 		default:;
 	    }
@@ -277,8 +325,6 @@ void set_position(int xpos,int ypos,int flag)
 		{
 			if (i == xpos && j == ypos)
 			{
-				if (xy_pos[i][j] != 0)
-					break;
 				if (flag == 1)
 				{
 					xy_pos[i][j] = 1;
@@ -348,6 +394,12 @@ int main(int argc,char* argv[])
 		    generate(1,1);
 		    cursor_movement(xpos,ypos);
 	    }
+	else if (argc == 2)
+	{
+		printf("Use wsad to move\n");
+		printf("Type enter to mark\n");
+		printf("Type q to quit\n");
+	}
 	else 
 	    {
 		    std::cout << "error" << std::endl;
