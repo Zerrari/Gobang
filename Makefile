@@ -1,17 +1,17 @@
-demo : main.o check.o scene.o movement.o
+objects = main.o check.o scene.o movement.o
+
+gobang : ${objects}
+	g++ -o gobang ${objects}
+	@echo "Complete!"
+	@echo "./gobang to enjoy the game"
+
+main.o : prog.h
+check.o : 
+scene.o :
+movement.o : 
+
+install:
 	g++ -o demo main.o check.o scene.o movement.o
 
-main.o : main.cpp prog.h
-	g++ -c main.cpp prog.h
-
-check.o : check.cpp
-	g++ -c check.cpp
-
-scene.o : scene.cpp
-	g++ -c scene.cpp
-
-movement.o : movement.cpp
-	g++ -c movement.cpp
-
 clean : 
-	rm demo main.o check.o scene.o movement.o prog.h.gch
+	-rm gobang ${objects}
