@@ -14,4 +14,4 @@ movement.o : movement.cpp
 	g++ -c movement.cpp
 
 clean : 
-	rm demo main.o check.o scene.o movement.o
+	rm demo main.o check.o scene.o movement.o prog.h.gch
