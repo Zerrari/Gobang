@@ -1,13 +1,0 @@
-
-/Users/zerrari/Codes/gobang/main.cpp,550
-int quitgame(void)quitgame18,359
-int check_exist(int xpos,int ypos)check_exist38,606
-int check_rows(int (*xy_pos)[9])check_rows56,833
-int check_columns(int (*xy_pos)[9])check_columns90,1262
-int check_diags(int (*xy_pos)[9])check_diags125,1695
-int check(int (*xy_pos)[9])check218,2851
-int getch(void)getch230,3071
-void cursor_movement(int i,int j)cursor_movement243,3383
-void set_position(int xpos,int ypos,int flag)set_position319,4406
-int generate(int xpos,int ypos)generate357,4952
-int main(int argc,char* argv[])main383,5360
